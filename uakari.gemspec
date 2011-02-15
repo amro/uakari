@@ -25,8 +25,14 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "lib/uakari.rb",
+    "rdoc/Uakari.html",
+    "rdoc/created.rid",
+    "rdoc/index.html",
+    "rdoc/lib/uakari_rb.html",
+    "rdoc/rdoc.css",
     "test/helper.rb",
-    "test/test_uakari.rb"
+    "test/test_uakari.rb",
+    "uakari.gemspec"
   ]
   s.homepage = %q{http://github.com/amro/uakari}
   s.licenses = ["MIT"]
