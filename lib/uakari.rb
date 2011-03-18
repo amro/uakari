@@ -1,5 +1,6 @@
 require 'httparty'
 require 'json'
+require 'cgi'
 
 class Uakari
   include HTTParty
@@ -24,7 +25,8 @@ class Uakari
 
   def call(method, params = {})
     url = "#{base_api_url}#{method}"
-    params = params.merge(@default_params)
+    params = @default_params.merge(params)
+    params.each_pair {|k,v| params[k] = CGI::escape(v) if v.class == String}
     response = self.class.post(url, :query => params, :timeout => @timeout)
 
     begin
