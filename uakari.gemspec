@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{uakari}
-  s.version = "0.1.3"
+  s.version = "0.1.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Amro Mousa"]
-  s.date = %q{2011-04-06}
+  s.date = %q{2011-08-04}
   s.description = %q{Uakari a API wrapper for the MailChimp STS API (1.0), which wraps Amazon SES.}
   s.email = %q{amromousa@gmail.com}
   s.extra_rdoc_files = [
