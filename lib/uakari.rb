@@ -1,10 +1,11 @@
 require 'httparty'
 require 'json'
 require 'cgi'
-require File.join(File.dirname(__FILE__), 'action_mailer_plugin',)
+require File.join(File.dirname(__FILE__), 'plugins', 'action_mailer_plugin',)
 
 class Uakari
   include HTTParty
+  include ActionMailerPlugin
   default_timeout 30
 
   attr_accessor :apikey, :timeout, :options
@@ -18,7 +19,6 @@ class Uakari
         :track_clicks => true
       }
     }.merge(extra_params)
-    ActionMailer::Base.add_delivery_method :uakari, Uakari
   end
 
   def apikey=(value)
@@ -42,21 +42,6 @@ class Uakari
       response = response.body
     end
     response
-  end
-  
-  def deliver!(message)
-    call(:send_mail, {
-     :track_opens => @options[:track_opens], 
-     :track_clicks => @options[:track_clicks], 
-     :message => {
-       :subject => message.subject, 
-       :html => message.text_part.body, 
-       :text => message.html_part.body, 
-       :from_name => '', 
-       :from_email => message.from.first, 
-       :to_email => message.to
-     }
-    })
   end
 
   def method_missing(method, *args)

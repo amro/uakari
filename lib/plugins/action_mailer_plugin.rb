@@ -1,4 +1,4 @@
-class ActionMailerPlugin
+module ActionMailerPlugin
   def deliver!(message)
    send_email({
      :track_opens => @options[:track_opens], 
@@ -14,4 +14,4 @@ class ActionMailerPlugin
     })
   end
 end
-ActionMailer::Base.add_delivery_method :uakarki, Uakari::Rails::ActionMailerPlugin
+ActionMailer::Base.add_delivery_method :uakari, ActionMailerPlugin
