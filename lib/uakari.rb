@@ -1,16 +1,23 @@
 require 'httparty'
 require 'json'
 require 'cgi'
+require File.join(File.dirname(__FILE__), 'handlers', 'uakari_delivery_handler')
 
 class Uakari
   include HTTParty
   default_timeout 30
 
-  attr_accessor :apikey, :timeout
+  attr_accessor :apikey, :timeout, :options
 
   def initialize(apikey = nil, extra_params = {})
     @apikey = apikey
-    @default_params = {:apikey => apikey}.merge(extra_params)
+    @default_params = {
+      :apikey => apikey,
+      :options => {
+        :track_opens => true, 
+        :track_clicks => true
+      }
+    }.merge(extra_params)
   end
 
   def apikey=(value)
