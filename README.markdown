@@ -38,16 +38,17 @@ Calling other methods is as simple as calling API methods directly on the Uakari
 
 ### Plugging into ActionMailer
 
-You use tell ActionMailer to send mail using Mailchimp STS by adding the follow to to your config/application.rb or to the proper environment (eg. config/production.rb) :
+You can tell ActionMailer to send mail using Mailchimp STS by adding the follow to to your config/application.rb or to the proper environment (eg. config/production.rb) :
     
     config.action_mailer.delivery_method = :uakari
     config.action_mailer.uakari_settings = {
           :apikey => your_mailchimp_apikey,
           :track_clicks => true,
-          :track_opens  => true,
-          :from_name    => "Stafford Brooke"
+          :track_opens  => true, 
+          :from_name    => "Change Me"
      }
 
+These setting will allow you to use ActionMailer as you normally would, any calls to mail() will be sent using Mailchimp STS
 
 ### Other Stuff
 
@@ -58,6 +59,7 @@ Uakari defaults to a 30 second timeout. You can optionally set your own timeout 
 ##Thanks
 
 * [Stafford Brooke](https://github.com/srbiv)
+* [Loren Norman](https://github.com/lorennorman)
 * Rails for camelize gsub
 
 ##Copyrights
