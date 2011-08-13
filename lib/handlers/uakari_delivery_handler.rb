@@ -1,3 +1,5 @@
+require 'action_mailer'
+
 class UakariDeliveryHandler
   def initialize options
     @uakari = Uakari.new(options[:apikey])
