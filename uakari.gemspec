@@ -25,6 +25,7 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "lib/uakari.rb",
+    "lib/handlers/uakari_delivery_handler.rb",
     "rdoc/Uakari.html",
     "rdoc/created.rid",
     "rdoc/index.html",
