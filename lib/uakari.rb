@@ -1,11 +1,10 @@
 require 'httparty'
 require 'json'
 require 'cgi'
-require File.join(File.dirname(__FILE__), 'plugins', 'action_mailer_plugin',)
+require File.join(File.dirname(__FILE__), 'handlers', 'uakari_delivery_handler')
 
 class Uakari
   include HTTParty
-  include ActionMailerPlugin
   default_timeout 30
 
   attr_accessor :apikey, :timeout, :options
