@@ -21,9 +21,10 @@ Create an instance of the API wrapper:
 Send a message so a single email:
 
     response = u.send_email({
-        :track_opens => true, 
+        :track_opens  => true, 
         :track_clicks => true, 
-        :message => {
+        :tags         => ["awesome", "tags", "here"] #optional STS tags
+        :message      => { 
             :subject => 'your subject', 
             :html => '<html>hello world</html>', 
             :text => 'hello world', 
@@ -46,9 +47,14 @@ You can tell ActionMailer to send mail using Mailchimp STS by adding the follow 
           :track_clicks => true,
           :track_opens  => true, 
           :from_name    => "Change Me"
+          :tags         => ["awesome", "tags", "here"] #optional STS tags
      }
 
 These setting will allow you to use ActionMailer as you normally would, any calls to mail() will be sent using Mailchimp STS
+
+If, for some reason, you want to use ActionMailer and change your tags dynamically at runtime, you can do something like:
+
+    ActionMailer::Base.uakari_settings[:tags] = ["dynamically", "set", "tags"]
 
 ### Other Stuff
 
