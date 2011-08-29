@@ -14,8 +14,8 @@ class UakariDeliveryHandler
       :track_clicks => settings[:track_clicks],
       :message => {
         :subject => message.subject,
-        :html => message.text_part.body,
-        :text => message.html_part.body,
+        :html => message.html_part.body,
+        :text => message.text_part.body,
         :from_name => settings[:from_name],
         :from_email => message.from.first,
         :to_email => message.to
