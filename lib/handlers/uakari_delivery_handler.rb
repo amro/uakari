@@ -3,7 +3,7 @@ require 'action_mailer'
 class UakariDeliveryHandler
   def initialize options
     @uakari = Uakari.new(options[:apikey])
-    @options = {:track_opens => true, :track_clicks => true}.merge(options)
+    @options = {:track_opens => true, :track_clicks => true, :tags => []}.merge(options)
   end
   
   def deliver! message
@@ -17,8 +17,13 @@ class UakariDeliveryHandler
        :from_name => @options[:from_name],
        :from_email => message.from.first,
        :to_email => message.to
-     }
+     },
+     :tags => (message[:tags] || @options[:tags])
     })
+  end
+
+  def settings
+    @options
   end
 end
 ActionMailer::Base.add_delivery_method :uakari, UakariDeliveryHandler
