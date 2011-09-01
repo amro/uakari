@@ -3,10 +3,10 @@ require 'json'
 require 'cgi'
 require File.join(File.dirname(__FILE__), 'handlers', 'uakari_delivery_handler')
 module Uakari
+  include HTTParty
+  default_timeout 30
+  
   class << self
-    include HTTParty
-    default_timeout 30
-
     attr_accessor :apikey, :timeout, :options
     
     def base_api_url
@@ -17,8 +17,7 @@ module Uakari
     def call(method, params = {})
       url = "#{base_api_url}#{method}"
       params = self.default_params.merge(params)
-      response = self.class.post(url, :body => params, :timeout => self.timeout)
-
+      response = self.post(url, :body => params, :timeout => self.timeout)
       begin
         response = JSON.parse(response.body)
       rescue
@@ -42,6 +41,10 @@ module Uakari
       args = {} unless args.length > 0
       args = args[0] if (args.class.to_s == "Array")
       call(method, args)
+    end
+    
+    def options
+      @options ||= {:track_opens => true, :track_clicks => true}
     end
   end
 end
