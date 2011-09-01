@@ -1,7 +1,10 @@
 require 'httparty'
 require 'json'
 require 'cgi'
-require File.join(File.dirname(__FILE__), 'handlers', 'uakari_delivery_handler')
+if defined?(ActionMailer)
+  require File.join(File.dirname(__FILE__), 'handlers', 'uakari_delivery_handler')
+end
+
 module Uakari
   include HTTParty
   default_timeout 30
