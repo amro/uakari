@@ -54,7 +54,7 @@ You can tell ActionMailer to send mail using Mailchimp STS by adding the follow 
     
     config.action_mailer.delivery_method = :uakari
     config.action_mailer.uakari_settings = {
-          :apikey => your_mailchimp_apikey,
+          :api_key => "your_mailchimp_apikey",
           :track_clicks => true,
           :track_opens  => true, 
           :from_name    => "Change Me"
