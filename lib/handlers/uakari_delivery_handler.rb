@@ -4,7 +4,7 @@ class UakariDeliveryHandler
   attr_accessor :settings
 
   def initialize options
-    self.settings = {:track_opens => true, :track_clicks => true, :tags => nil}.merge(options)
+    self.settings = {:track_opens => true, :track_clicks => true}.merge(options)
   end
 
   def deliver! message
@@ -20,6 +20,7 @@ class UakariDeliveryHandler
         :to_email => message.to
       }
     }
+
     message_payload[:tags] = settings[:tags] if settings[:tags]
 
     Uakari.new(settings[:api_key]).send_email(message_payload)

@@ -14,7 +14,7 @@ class Uakari
   def initialize(api_key = nil, extra_params = {})
     @api_key = api_key || ENV['MC_API_KEY'] || Uakari.api_key
     @default_params = {
-      :api_key => @api_key,
+      :apikey => @api_key,
       :options => {
         :track_opens => true, 
         :track_clicks => true
@@ -24,7 +24,7 @@ class Uakari
 
   def api_key=(value)
     @api_key = value
-    @default_params = @default_params.merge({:api_key => @api_key})
+    @default_params = @default_params.merge({:apikey => @api_key})
   end
 
   def base_api_url
