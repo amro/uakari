@@ -21,7 +21,8 @@ Jeweler::Tasks.new do |gem|
   gem.authors = ["Amro Mousa"]
 
   gem.add_runtime_dependency 'httparty', '> 0.6.0'
-  gem.add_runtime_dependency 'json', '> 1.4.0'
+  gem.add_runtime_dependency 'json', '>= 1.4.0'
+  gem.add_runtime_dependency 'actionmailer', '>= 3.0.0'
 end
 Jeweler::RubygemsDotOrgTasks.new
 

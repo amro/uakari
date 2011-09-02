@@ -25,7 +25,8 @@ Send a message so a single email:
     Uakari.send_email({
         :track_opens => true, 
         :track_clicks => true, 
-        :message => {
+        :tags         => ["awesome", "tags", "here"] #optional STS tags
+        :message      => { 
             :subject => 'your subject', 
             :html => '<html>hello world</html>', 
             :text => 'hello world', 
@@ -49,6 +50,10 @@ You can tell ActionMailer to send mail using Mailchimp STS by adding the follow 
 
 These setting will allow you to use ActionMailer as you normally would, any calls to mail() will be sent using Mailchimp STS
 
+If, for some reason, you want to use ActionMailer and change your tags dynamically at runtime, you can do something like:
+
+    ActionMailer::Base.uakari_settings[:tags] = ["dynamically", "set", "tags"]
+
 ### Other Stuff
 
 Uakari defaults to a 30 second timeout. You can optionally set your own timeout (in seconds) like so:
@@ -60,6 +65,7 @@ Uakari defaults to a 30 second timeout. You can optionally set your own timeout 
 * [Stafford Brooke](https://github.com/srbiv)
 * [Loren Norman](https://github.com/lorennorman)
 * [Andy Lindeman](https://github.com/alindeman)
+* [Ali Faiz](https://github.com/alif)
 * Rails for camelize gsub
 
 ##Copyrights
