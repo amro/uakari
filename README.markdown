@@ -12,9 +12,20 @@ A paid MailChimp account, MailChimp API key, and Amazon AWS account with SES rea
 
 ##Usage
 
-Create an instance of the API wrapper:
+There are a few ways to use Uakari.
 
-    u = Uakari.new(apikey)
+You can create an instance of the API wrapper:
+
+    u = Uakari.new("your_api_key")
+
+You can set your api_key globally and call class methods:
+
+    Uakari.api_key = "your_api_key"
+    Uakari.send_email(...)
+
+You can also set the environment variable 'MC_API_KEY' and Uakari will use it when you create an instance:
+
+    u = Uakari.new
 
 ### Sending a message
 

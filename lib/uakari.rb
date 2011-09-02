@@ -1,18 +1,20 @@
 require 'httparty'
 require 'json'
 require 'cgi'
-require File.join(File.dirname(__FILE__), 'handlers', 'uakari_delivery_handler')
+if defined?(ActionMailer)
+  require File.join(File.dirname(__FILE__), 'handlers', 'uakari_delivery_handler')
+end
 
 class Uakari
   include HTTParty
   default_timeout 30
 
-  attr_accessor :apikey, :timeout, :options
+  attr_accessor :api_key, :timeout, :options
 
-  def initialize(apikey = nil, extra_params = {})
-    @apikey = apikey
+  def initialize(api_key = nil, extra_params = {})
+    @api_key = api_key || ENV['MC_API_KEY'] || Uakari.api_key
     @default_params = {
-      :apikey => apikey,
+      :api_key => @api_key,
       :options => {
         :track_opens => true, 
         :track_clicks => true
@@ -20,13 +22,13 @@ class Uakari
     }.merge(extra_params)
   end
 
-  def apikey=(value)
-    @apikey = value
-    @default_params = @default_params.merge({:apikey => @apikey})
+  def api_key=(value)
+    @api_key = value
+    @default_params = @default_params.merge({:api_key => @api_key})
   end
 
   def base_api_url
-    dc = @apikey.blank? ? '' : "#{@apikey.split("-").last}."
+    dc = @api_key.blank? ? '' : "#{@api_key.split("-").last}."
     "https://#{dc}sts.mailchimp.com/1.0/"
   end
 
@@ -48,5 +50,13 @@ class Uakari
     args = {} unless args.length > 0
     args = args[0] if (args.class.to_s == "Array")
     call(method, args)
+  end
+
+  class << self
+    attr_accessor :api_key
+
+    def method_missing(sym, *args, &block)
+      new(self.api_key).send(sym, *args, &block)
+    end
   end
 end
