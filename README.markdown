@@ -13,10 +13,27 @@ A paid MailChimp account, MailChimp API key, and Amazon AWS account with SES rea
 
 ##Usage
 
+<<<<<<< HEAD
 Configure your app with your API key:
 
     Uakari.apikey = 'your-api-key'
 
+=======
+There are a few ways to use Uakari.
+
+You can create an instance of the API wrapper:
+
+    u = Uakari.new("your_api_key")
+
+You can set your api_key globally and call class methods:
+
+    Uakari.api_key = "your_api_key"
+    Uakari.send_email(...)
+
+You can also set the environment variable 'MC_API_KEY' and Uakari will use it when you create an instance:
+
+    u = Uakari.new
+>>>>>>> 62b1d4c994213af3b4f313c5f48338527488b37a
 
 ### Sending a message
 
@@ -45,7 +62,15 @@ You can tell ActionMailer to send mail using Mailchimp STS by adding the follow 
     
     config.action_mailer.delivery_method = :uakari
     config.action_mailer.uakari_settings = {
+<<<<<<< HEAD
           :from_name    => "From name"
+=======
+          :api_key => "your_mailchimp_apikey",
+          :track_clicks => true,
+          :track_opens  => true, 
+          :from_name    => "Change Me"
+          :tags         => ["awesome", "tags", "here"] #optional STS tags
+>>>>>>> 62b1d4c994213af3b4f313c5f48338527488b37a
      }
 
 These setting will allow you to use ActionMailer as you normally would, any calls to mail() will be sent using Mailchimp STS
@@ -66,6 +91,7 @@ Uakari defaults to a 30 second timeout. You can optionally set your own timeout 
 * [Loren Norman](https://github.com/lorennorman)
 * [Andy Lindeman](https://github.com/alindeman)
 * [Ali Faiz](https://github.com/alif)
+* [Calvin Yu](https://github.com/cyu)
 * Rails for camelize gsub
 
 ##Copyrights
