@@ -12,7 +12,7 @@ class Uakari
   attr_accessor :api_key, :timeout, :options
 
   def initialize(api_key = nil, extra_params = {})
-    @api_key = api_key || ENV['MC_API_KEY'] || self.class.api_key
+    @api_key = api_key || ENV['MC_API_KEY'] || ENV['MAILCHIMP_API_KEY'] || self.class.api_key
     @default_params = {
       :apikey => @api_key,
       :options => {
