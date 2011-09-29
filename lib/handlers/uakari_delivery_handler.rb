@@ -13,13 +13,22 @@ class UakariDeliveryHandler
       :track_clicks => settings[:track_clicks],
       :message => {
         :subject => message.subject,
-        :html => message.html_part.body,
-        :text => message.text_part.body,
         :from_name => settings[:from_name],
         :from_email => message.from.first,
         :to_email => message.to
       }
     }
+
+    get_content_for = lambda do |format|
+      content = message.send(:"#{format}_part")
+      content ||= message if message.sub_type =~ %r{#{format}}i
+      content
+    end
+
+    [:html, :text].each do |format|
+      content = get_content_for.call(format)
+      message_payload[:message][format] = content.body if content
+    end
 
     message_payload[:tags] = settings[:tags] if settings[:tags]
 
