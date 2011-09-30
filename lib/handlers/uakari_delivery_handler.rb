@@ -19,9 +19,14 @@ class UakariDeliveryHandler
       }
     }
 
+    mime_types = {
+      :html => "text/html",
+      :text => "text/plain"
+    }
+
     get_content_for = lambda do |format|
       content = message.send(:"#{format}_part")
-      content ||= message if message.sub_type =~ %r{#{format}}i
+      content ||= message if message.content_type =~ %r{#{mime_types[format]}}
       content
     end
 
