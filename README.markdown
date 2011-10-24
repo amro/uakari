@@ -79,6 +79,7 @@ Uakari defaults to a 30 second timeout. You can optionally set your own timeout 
 * [Loren Norman](https://github.com/lorennorman)
 * [Ali Faiz](https://github.com/alif)
 * [Calvin Yu](https://github.com/cyu)
+* [James Kyburz](https://github.com/JamesKyburz)
 * Rails for camelize gsub
 
 ##Copyrights
