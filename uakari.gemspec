@@ -4,14 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = %q{uakari}
-  s.version = "0.2.4"
+  s.name = "uakari"
+  s.version = "0.2.5"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = [%q{Amro Mousa}]
-  s.date = %q{2011-09-06}
-  s.description = %q{Uakari a API wrapper for the MailChimp STS API (1.0), which wraps Amazon SES.}
-  s.email = %q{amromousa@gmail.com}
+  s.authors = ["Amro Mousa"]
+  s.date = "2011-10-24"
+  s.description = "Uakari a API wrapper for the MailChimp STS API (1.0), which wraps Amazon SES."
+  s.email = "amromousa@gmail.com"
   s.extra_rdoc_files = [
     "LICENSE.txt",
     "README.markdown"
@@ -35,11 +35,11 @@ Gem::Specification.new do |s|
     "test/test_uakari.rb",
     "uakari.gemspec"
   ]
-  s.homepage = %q{http://github.com/amro/uakari}
-  s.licenses = [%q{MIT}]
-  s.require_paths = [%q{lib}]
-  s.rubygems_version = %q{1.8.9}
-  s.summary = %q{Uakari a API wrapper for the MailChimp STS API (1.0)}
+  s.homepage = "http://github.com/amro/uakari"
+  s.licenses = ["MIT"]
+  s.require_paths = ["lib"]
+  s.rubygems_version = "1.8.10"
+  s.summary = "Uakari a API wrapper for the MailChimp STS API (1.0)"
   s.test_files = [
     "test/helper.rb",
     "test/test_uakari.rb"
