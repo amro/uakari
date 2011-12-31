@@ -13,10 +13,12 @@ class UakariDeliveryHandler
       :track_clicks => settings[:track_clicks],
       :message => {
         :subject => message.subject,
-        :from_name => settings[:from_name],
-        :from_email => message.from.first,
-        :to_email => message.to,
-        :bcc_email => message.bcc
+        :from_name => settings[:from_name] || mail[:from].display_names.first,
+        :from_email => message[:from].addresses.first,
+        :to_email => message[:to].addresses,
+        :to_name => message[:to].display_names,
+        :bcc_name => message[:bcc].display_names,
+        :bcc_email => message[:bcc].addresses
       }
     }
 
