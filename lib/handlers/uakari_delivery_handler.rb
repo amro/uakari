@@ -16,6 +16,7 @@ class UakariDeliveryHandler
         :from_name => settings[:from_name],
         :from_email => message.from.first,
         :to_email => message.to
+        :bcc_email => message.bcc
       }
     }
 
