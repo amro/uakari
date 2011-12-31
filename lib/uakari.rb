@@ -28,7 +28,7 @@ class Uakari
   end
 
   def base_api_url
-    dc = @api_key.blank? ? '' : "#{@api_key.split("-").last}."
+    dc = (@api_key.nil? || @api_key.empty?) ? '' : "#{@api_key.split("-").last}."
     "https://#{dc}sts.mailchimp.com/1.0/"
   end
 
@@ -40,7 +40,7 @@ class Uakari
     begin
       response = JSON.parse(response.body)
     rescue
-      response = response.body
+      response = JSON.parse('['+response.body+']').first
     end
     response
   end
