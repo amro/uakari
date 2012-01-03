@@ -17,6 +17,8 @@ class UakariDeliveryHandler
         :from_email => message[:from].addresses.first,
         :to_email => message[:to].addresses,
         :to_name => message[:to].display_names,
+        :cc_email => message[:cc].addresses,
+        :cc_name => message[:cc].display_names,
         :bcc_name => message[:bcc].display_names,
         :bcc_email => message[:bcc].addresses
       }
