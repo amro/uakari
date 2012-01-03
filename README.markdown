@@ -63,9 +63,28 @@ You can tell ActionMailer to send mail using Mailchimp STS by adding the follow 
 
 These setting will allow you to use ActionMailer as you normally would, any calls to mail() will be sent using Mailchimp STS
 
-If, for some reason, you want to use ActionMailer and change your tags dynamically at runtime, you can do something like:
+If you want to use ActionMailer and change your tags dynamically at runtime, you can do something like:
 
     ActionMailer::Base.uakari_settings[:tags] = ["dynamically", "set", "tags"]
+    
+You can also set tags on individual pieces of mail by using Mail unstructured fields.  Multiple tags may be set, but they cannot be set with an array, so set them individually:
+
+    > mail = ExampleMailer.hello_email(. . .)
+    > mail[:tags] = 'example'
+    > mail[:tags]
+     => example   # it's a single Mail::Field object
+
+    > mail[:tags] = 'hello'    
+    > mail[:tags]   
+     =>  [example, hello]   # it's an Array of Mail::Field objects
+    
+Don't do this, Mail will try to make a single field out of the entire array:
+
+    > mail[:tags] = ['this', 'will', 'break']
+    > mail[:tags]
+    (Object doesn't support #inspect)
+    > mail.deliver
+    NoMethodError: undefined method `encoding' for ["howdy", "doody"]:Array   # told you so...
 
 ### Other Stuff
 

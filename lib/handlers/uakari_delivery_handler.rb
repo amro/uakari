@@ -38,10 +38,24 @@ class UakariDeliveryHandler
       message_payload[:message][format] = content.body if content
     end
 
-    message_payload[:tags] = settings[:tags] if settings[:tags]
+    message_payload[:tags] = build_tags(message)
 
     Uakari.new(settings[:api_key]).send_email(message_payload)
+  
   end
+  
+  private
+  
+  def build_tags(message)
+    tags = []
+    tags = tags | settings[:tags] if settings[:tags]   # tags set in Uakari config
+    tags = tags | extract_message_tags(message)
+  end
+  
+  def extract_message_tags(message)
+    [*message[:tags]].collect { |t| t.to_s }
+  end
+
 
 end
 ActionMailer::Base.add_delivery_method :uakari, UakariDeliveryHandler
