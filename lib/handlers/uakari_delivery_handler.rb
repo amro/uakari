@@ -13,14 +13,15 @@ class UakariDeliveryHandler
       :track_clicks => settings[:track_clicks],
       :message => {
         :subject => message.subject,
-        :from_name => settings[:from_name] || message[:from].display_names.first,
-        :from_email => message[:from].addresses.first,
-        :to_email => message[:to].addresses,
-        :to_name => message[:to].display_names,
-        :bcc_name => message[:bcc].display_names,
-        :bcc_email => message[:bcc].addresses
+        :from_name => settings[:from_name],
+        :from_email => message.from.first,
+        :to_email => message.to
       }
     }
+
+    message_payload[:tags] = settings[:tags] if settings[:tags]
+    message_payload[:message][:cc_email] = message.cc if message.cc
+    message_payload[:message][:bcc_email] = message.bcc if message.bcc
 
     mime_types = {
       :html => "text/html",
@@ -37,8 +38,6 @@ class UakariDeliveryHandler
       content = get_content_for.call(format)
       message_payload[:message][format] = content.body if content
     end
-
-    message_payload[:tags] = settings[:tags] if settings[:tags]
 
     Uakari.new(settings[:api_key]).send_email(message_payload)
   end
