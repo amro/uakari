@@ -9,7 +9,7 @@ class Uakari
   include HTTParty
   default_timeout 30
 
-  attr_accessor :api_key, :timeout, :options
+  attr_accessor :api_key, :timeout
 
   def initialize(api_key = nil, extra_params = {})
     @api_key = api_key || ENV['MC_API_KEY'] || ENV['MAILCHIMP_API_KEY'] || self.class.api_key
