@@ -36,20 +36,15 @@ class Uakari
     url = "#{base_api_url}#{method}"
     params = @default_params.merge(params)
     response = self.class.post(url, :body => params, :timeout => @timeout)
-
-    begin
-      response = JSON.parse(response.body)
-    rescue
-      response = JSON.parse('['+response.body+']').first
-    end
-    response
+    
+    # Some calls (e.g. listSubscribe) return json fragments
+    # (e.g. true) so wrap in an array prior to parsing
+    JSON.parse('['+response.body+']').first
   end
 
   def method_missing(method, *args)
     method = method.to_s.gsub(/\/(.?)/) { "::#{$1.upcase}" }.gsub(/(?:^|_)(.)/) { $1.upcase } #Thanks for the gsub, Rails
-    args = {} unless args.length > 0
-    args = args[0] if (args.class.to_s == "Array")
-    call(method, args)
+    call(method, *args)
   end
 
   class << self
