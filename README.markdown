@@ -1,3 +1,5 @@
+## MailChimp's STS API is now deprecated so this gem is also deprecated
+
 # uakari
 
 Uakari is a simple API wrapper for the [MailChimp STS API](http://http://apidocs.mailchimp.com/sts/1.0/) 1.0, which wraps Amazon SES.
