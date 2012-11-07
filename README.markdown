@@ -1,3 +1,5 @@
+# This Gem has been yanked because MailChimp will soon shut down STS. Use [Mandrill](http://mandrill.com) instead.
+
 ## MailChimp's STS API is now deprecated so this gem is also deprecated
 
 # uakari
