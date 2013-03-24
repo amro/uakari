@@ -1,1 +1,1 @@
-# This Gem has been yanked because MailChimp will soon shut down STS. Use [Mandrill](http://mandrill.com) instead.
+# This Gem has been yanked because MailChimp has shut down STS. Use [Mandrill](http://mandrill.com) instead.
